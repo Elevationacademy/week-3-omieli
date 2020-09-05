@@ -1,23 +1,33 @@
-// $("button").on("click", function(){
-//     console.log($(this).closest("div").find("span").text())
-//   })
+// turn our "template" into html
+var source = $('#store-template').html();
+
+// compile our template html using handlebars
+var template = Handlebars.compile(source);
+
+// fill our template with information
+var newHTML = template({item: "bread", price: "3"});
+
+// append our new html to the page
+$('.items').append(newHTML);
+
+var newHTML2 = template({item: "Cheese", price: "10"});
+
+$('.items').append(newHTML2);
 
 
-// $("button").on("click", function(){
-//     console.log($(".container").find("p").text())
-//   })
-  let compID = []
+const renderFirst = function(){
+  const source = $('#first-template').html();
+  const template = Handlebars.compile(source);
+  let newHTML = template({ text: "This gets rendered" });
+  $('body').append(newHTML);  
+}
 
-$(".generator").on("click", function(){
-    console.log("Processor ID: "+$(this).closest(".computer").find(".processor").attr('id'))
-    console.log("Computer's data-id: "+$(this).closest(".computer").data().id)
-    compID.push(cmp_ID = $(this).closest(".computer").find(".processor").attr('id'))
-    console.log("BUS: "+$(this).closest(".computer").find(".BUS").text())
-  })
+const renderSecond = function(){
+  const source = $('#second-template').html();
+  const template = Handlebars.compile(source);
+  let newHTML = template({ moreText: "This also gets rendered" });
+  $('#special').append(newHTML);  
+}
 
-  $(".validator").on("click", function(){
-    console.log("The generator's text: "+$(this).closest(".computer").find(".generator").text())
-    console.log("The MB: "+$(this).closest(".computer").find(".MB").text())
-    console.log("Both QRs: "+$(this).closest(".computer").find(".QR").text())
-
-  })
+renderFirst()
+renderSecond()
